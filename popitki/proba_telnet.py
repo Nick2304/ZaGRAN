@@ -19,8 +19,3 @@ tn.write('admin'+'\n')
 #time.sleep(2)
 print(tn.read_all())
 tn.close()
-
-
-
-
-
