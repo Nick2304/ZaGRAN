@@ -1,25 +1,28 @@
-#Тестирование PyTelnet библиотеки
-import time
 
-from telnet.telnet import *
-from telnetlib import Telnet
+import sys  # sys нужен для передачи argv в QApplication
+from PyQt5 import QtWidgets
+from PyQt5.QtGui import QFont
 
-#tln=telnet('10.0.0.18')
-#tln.connect()
-#tln.send(' ')
-#while True:
-    #time.sleep(1)
-    #print(tln.recieve(1024))
-    #tln.send(input())
+import main_form  # Это наш конвертированный файл дизайна
 
-tn = Telnet('10.0.0.18')   # connect to finger port
-tn.write("vt100\n")
-#time.sleep(2)
-tn.write('admin'+'\n')
-#time.sleep(2)
-print(tn.read_all())
-tn.close()
 
+class ExampleApp(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
+    def __init__(self):
+        # Это здесь нужно для доступа к переменным, методам
+        # и т.д. в файле main_form.py
+        super().__init__()
+        self.setupUi(self)  # Это нужно для инициализации нашего дизайна
+        self.tabWidget.setCurrentIndex(0)
+        self.textLog.setHtml('qweasd123456')
+        self.textLog.append('qqqqqqq')
+
+
+
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication
+    window = ExampleApp()  # Создаём объект класса ExampleApp
+    window.show()  # Показываем окно
+    app.exec_()  # и запускаем приложение
 
 
 
